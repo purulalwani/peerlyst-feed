@@ -1,39 +1,34 @@
-# simple-react-full-stack
-
+# Peerlyst Feed Application 
 
 
 ## Introduction
 
 
 
-### Development mode
+### On Local Machine
 
 In the development mode, we will have 2 servers running. The front end code will be served by the [webpack dev server](https://webpack.js.org/configuration/dev-server/) which helps with hot and live reloading. The server side Express code will be served by a node server using [nodemon](https://nodemon.io/) which helps in automatically restarting the server whenever server side code changes.
 
-### Production mode
 
-In the production mode, we will have only 1 server running. All the client side code will be bundled into static files using webpack and it will be served by the Node.js/Express application.
 
 ## Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/crsandeep/simple-react-full-stack
+git clone https://github.com/purulalwani/peerlyst-feed
 
 # Go inside the directory
-cd simple-react-full-stack
+cd peerlyst-feed
 
 # Install dependencies
-yarn (or npm install)
+npm install)
 
 # Start development server
-yarn dev (or npm run dev)
+npm run dev
 
-# Build for production
-yarn build (or npm run build)
+# Run Application into browser (Chrome)
+http://localhost:3000
 
-# Start production server
-yarn start (or npm start)
 ```
 
 ## Documentation
@@ -49,9 +44,17 @@ All the source code will be inside **src** directory. Inside src, there is clien
 [.babelrc file](https://babeljs.io/docs/usage/babelrc/) is used describe the configurations required for Babel. Below is the .babelrc file which I am using.
 
 ```javascript
-{
-    "presets": ["env", "react"]
+
+ {
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
+
 ```
 
 Babel requires plugins to do the transformation. Presets are the set of plugins defined by Babel. Preset **env** allows to use babel-preset-es2015, babel-preset-es2016, and babel-preset-es2017 and it will transform them to ES5. Preset **react** allows us to use JSX syntax and it will transform JSX to Javascript.
@@ -200,13 +203,15 @@ This starts a server and listens on port 8080 for connections. The app responds 
 
 ```javascript
 "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-"server": "nodemon src/server/index.js",
+"server": "nodemon src/server/index.js --exec babel-node",
 "dev": "concurrently \"npm run server\" \"npm run client\""
 ```
 
-### VSCode + ESLint + Prettier
+### Nodejs API Routes
 
-[VSCode](https://code.visualstudio.com/) is a lightweight but powerful source code editor. [ESLint](https://eslint.org/) takes care of the code-quality. [Prettier](https://prettier.io/) takes care of all the formatting.
+- app.use('/api/post', postRoutes);
+- app.use('/api/auth', authRoutes);
+- app.use('/api/follow', followRoutes);
 
 #### Installation guide
 
