@@ -3,7 +3,9 @@
 
 ## Introduction
 
+### Technology Stack
 
+MERN (MongoDB, ExpressJS, ReactJS, NodeJS) with Webpack and Babel.
 
 ### On Local Machine
 
@@ -22,6 +24,10 @@ cd peerlyst-feed
 
 # Install dependencies
 npm install
+
+# Run mongo db on default port=27017
+mongod --dbpath ./peerlystdb/
+
 
 # Start development server
 npm run dev
