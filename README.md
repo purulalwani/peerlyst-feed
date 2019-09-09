@@ -255,7 +255,7 @@ See code at src/server/service/postService.js - getFeed()
 
 - Sign In
 
-!(./screens/signin)
+![](./screens/signin.png)
 
 
 
