@@ -21,7 +21,7 @@ git clone https://github.com/purulalwani/peerlyst-feed
 cd peerlyst-feed
 
 # Install dependencies
-npm install)
+npm install
 
 # Start development server
 npm run dev
