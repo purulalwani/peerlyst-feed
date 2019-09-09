@@ -257,6 +257,38 @@ See code at src/server/service/postService.js - getFeed()
 
 ![](./screens/signin.png)
 
+- Sign Up
+
+![](./screens/signup.png)
+
+- Home - Display all posts
+
+![](./screens/home.png)
+
+- Add Post - Normal Member
+
+![](./screens/addpost-nm.png)
+
+- Add Post - Community Member
+
+![](./screens/addpost-cm.png)
+
+- Follow Tags
+
+![](./screens/followtags.png)
+
+- Follow user
+
+![](./screens/followuser.png)
+
+- Feed -> infinite scrollable view with posts from user, tags followed, community manager.
+
+![](./screens/feed.png)
+
+
+
+
+
 
 
 
