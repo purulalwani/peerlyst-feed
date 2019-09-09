@@ -209,22 +209,54 @@ This starts a server and listens on port 8080 for connections. The app responds 
 
 ### Nodejs API Routes
 
-- app.use('/api/post', postRoutes);
-- app.use('/api/auth', authRoutes);
-- app.use('/api/follow', followRoutes);
+Routes are mentioned into src/server/index.js file, snippet below 
 
-#### Installation guide
+```javascript
 
-1.  Install [VSCode](https://code.visualstudio.com/)
-2.  Install [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-3.  Install [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-4.  Modify the VSCode user settings to add below configuration
+let authRoutes = require('./route/authRoute')(express.Router());
+let postRoutes = require('./route/postRoute')(express.Router());
+let tagsRoutes = require('./route/tagsRoute')(express.Router());
+let followRoutes = require('./route/followRoute')(express.Router());
 
-    ```javascript
-    "eslint.alwaysShowStatus": true,
-    "eslint.autoFixOnSave": true,
-    "editor.formatOnSave": true,
-    "prettier.eslintIntegration": true
-    ```
+// expose api end points
+app.use('/api/post', postRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/tags', tagsRoutes);
+app.use('/api/follow', followRoutes);
 
-Above, we have modified editor configurations. Alternatively, this can be configured at the project level by following [this article](https://medium.com/@netczuk/your-last-eslint-config-9e35bace2f99).
+```
+
+### Peerlyst Feed  
+
+1. My feed should show posts by users I follow, and also posts associated with tags I follow.
+2. The feed should be interspersed with Peerlyst Posts. The sequence of posts should satisfy the following rules:
+ * First 2 posts of the feed should be User Posts based on my follows
+ * The next 2 posts should be Peerlyst Posts of type A and type B, in that order.
+ * The cycle should repeat as long as there are posts to be shown in the feed.
+ * If any type of post is exhausted, the next in sequence should be shown. e.g. if I have only 3 posts based on follows, the sequence should be like:
+    - `User Post by Follow`
+    - `User Post by Follow`
+    - `Peerlyst Post Type A`
+    - `Peerlyst Post Type B`
+    - `User Post by Follow`
+    - `Peerlyst Post Type A`
+    - `Peerlyst Post Type B`
+    - `Peerlyst Post Type A`
+    - `...`
+ * Posts should be sorted by recency, and displayed in batches of 10 (via pagination or infinite scrolling)
+
+```javascript
+
+See code at src/server/service/postService.js - getFeed()
+
+```
+
+### UI Screen 
+
+- Sign In
+
+!(./screens/signin)
+
+
+
+
